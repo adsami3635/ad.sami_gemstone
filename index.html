@@ -1,274 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- ✅ SEO / Meta -->
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ad Sami Gems PK — Admin & Store</title>
 
-  <title>Ad Sami Gems PK | Premium Gemstones & Jewelry</title>
-  <meta name="description" content="Discover premium natural gemstones and jewelry at Ad Sami Gems PK. High-quality, verified stones with WhatsApp ordering and secure delivery.">
-  <meta name="keywords" content="Ad Sami Gems, gemstones, jewelry, natural gems, buy gems online, Pakistan gems, premium stones">
-  <meta name="author" content="AD.Sami Gems Collection">
-
-  <!-- Icons -->
+  <!-- Font Awesome for icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 
-  <!-- ✅ Styles -->
   <style>
     :root{
-      --primary:#5d2c02;      /* rich brown */
-      --primary-2:#8a3f06;    /* accent brown */
-      --secondary:#d4af37;    /* royal gold */
-      --dark:#0e0d0c;         /* near black */
-      --dark-2:#171310;       /* deep background */
-      --light:#f9f3e9;        /* parchment */
-      --muted:#b9a074;
-      --card:#ffffff;
-      --glass:rgba(255,255,255,.06);
+      --primary:#5d2c02;
+      --accent:#ff8c00;
+      --gold:#d4af37;
+      --bg-dark:#0e0c0a;
+      --card:#14100c;
+      --muted:#cdbd9b;
+      --glass: rgba(255,255,255,0.05);
     }
-
     *{box-sizing:border-box;margin:0;padding:0}
-    html,body{scroll-behavior:smooth}
+    html,body{height:100%;}
     body{
-      font-family: "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-      color: var(--light);
+      font-family: "Poppins",system-ui,Arial, sans-serif;
       background:
-        radial-gradient(1200px 600px at 10% -10%, rgba(212,175,55,.12), transparent 60%),
-        radial-gradient(900px 400px at 90% 10%, rgba(141,88,8,.2), transparent 55%),
-        linear-gradient(180deg, #0b0a09 0%, #16110d 100%);
+        radial-gradient(900px 400px at 10% 0%, rgba(212,175,55,.08), transparent 40%),
+        linear-gradient(180deg,#0b0a09 0%, #15110d 100%);
+      color: #efe6cf;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
       min-height:100vh;
     }
 
-    /* ===== Global Utilities ===== */
-    .container{max-width:1200px;margin-inline:auto;padding:0 5%}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;
-      padding:.9rem 1.2rem;border-radius:999px;border:1px solid transparent;
-      font-weight:600;cursor:pointer;transition:.25s transform,.25s box-shadow,.25s background,.25s color;
-      gap:.5rem;text-decoration:none;
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:var(--secondary);color:#000}
-    .btn-primary:hover{box-shadow:0 8px 24px rgba(212,175,55,.35)}
-    .btn-ghost{background:transparent;border-color:var(--secondary);color:var(--light)}
-    .btn-ghost:hover{background:rgba(212,175,55,.1)}
-    .tag{display:inline-block;padding:.25rem .6rem;border-radius:999px;background:rgba(212,175,55,.14);border:1px solid rgba(212,175,55,.35);color:var(--secondary);font-size:.8rem}
+    /* container */
+    .container{max-width:1100px;margin:0 auto;padding:24px}
 
-    /* ===== Welcome Screen (First Page) ===== */
+    /* Welcome Screen */
     .welcome-screen{
-      position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
-      background:
-        radial-gradient(1000px 500px at 20% 0%, rgba(212,175,55,.18), transparent 60%),
-        radial-gradient(900px 600px at 80% 100%, rgba(93,44,2,.35), transparent 55%),
-        linear-gradient(145deg,#0b0a09 0%,#15110d 100%);
-      animation: fadeIn .6s ease both;
+      position:fixed;inset:0;display:flex;align-items:center;justify-content:center;z-index:9999;
+      background:linear-gradient(180deg, rgba(0,0,0,.55), rgba(0,0,0,.55));
+      animation: fadeIn .4s ease both;
     }
     @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .welcome-box{
-      width:min(92%,480px);
-      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid rgba(212,175,55,.25);
-      border-radius:22px;padding:34px 28px;text-align:center;
-      box-shadow: 0 20px 60px rgba(0,0,0,.5);
-      backdrop-filter: blur(10px);
-      transform: translateY(10px); opacity:0; animation: rise .9s .1s ease forwards;
-    }
-    @keyframes rise{to{transform:translateY(0);opacity:1}}
-    .welcome-title{font-size:1.9rem;line-height:1.2;margin-bottom:6px;color:var(--secondary);font-weight:800;letter-spacing:.3px}
-    .welcome-sub{color:#e9dec8cc;margin-bottom:18px}
-    .welcome-hint{font-size:.95rem;color:#e5d7b8b3;margin-bottom:18px}
-    .welcome-actions{display:grid;gap:12px}
-    .welcome-badge{margin-bottom:12px}
-
-    /* Small floating gems for vibe */
-    .gem{
-      position:absolute; width:10px; height:10px; border-radius:2px;
-      background: conic-gradient(from 45deg, #ffd77a, #ffb347, #ffdf99, #ffd77a);
-      filter: drop-shadow(0 0 6px rgba(212,175,55,.6));
-      animation: float 8s ease-in-out infinite;
-      opacity:.9;
-    }
-    .gem.g1{top:14%;left:16%;animation-delay:0s}
-    .gem.g2{top:72%;left:22%;animation-delay:1.2s}
-    .gem.g3{top:18%;right:18%;animation-delay:2.1s}
-    .gem.g4{bottom:12%;right:10%;animation-delay:.6s}
-    @keyframes float{
-      0%,100%{transform:translateY(0) rotate(0deg)}
-      50%{transform:translateY(-14px) rotate(90deg)}
-    }
-
-    /* ===== Header / Nav ===== */
-    header{
-      position:sticky;top:0;z-index:20;
-      background: rgba(24,19,14,.65);
-      border-bottom:1px solid rgba(212,175,55,.16);
+    .welcome-card{
+      width:min(92%,520px);
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));
+      border:1px solid rgba(212,175,55,.22);
+      padding:30px;border-radius:18px; text-align:center; box-shadow: 0 20px 60px rgba(0,0,0,.6);
       backdrop-filter: blur(8px);
     }
-    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 5%}
-    .logo{font-weight:900;font-size:1.25rem;letter-spacing:.5px;color:var(--secondary)}
-    nav ul{display:flex;list-style:none;gap:22px}
-    nav a{color:#efe5cf;text-decoration:none;font-weight:600}
-    nav a:hover{color:var(--secondary)}
-
-    /* ===== Hero ===== */
-    .hero{
-      position:relative;min-height:72vh;display:grid;place-items:center;text-align:center;
-      overflow:hidden;
+    .welcome-title{font-size:1.9rem;color:var(--gold);font-weight:800;margin-bottom:8px}
+    .welcome-sub{color:#f0e6cf;margin-bottom:16px}
+    .welcome-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .btn{
+      display:inline-flex;align-items:center;gap:.6rem;padding:.8rem 1.1rem;border-radius:999px;border:1px solid transparent;
+      cursor:pointer;font-weight:700;text-decoration:none;
     }
+    .btn-primary{background:var(--gold);color:#000}
+    .btn-ghost{background:transparent;border:1px solid rgba(212,175,55,.18);color:#efe6cf}
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(212,175,55,.25)}
+    .btn-ghost:hover{transform:translateY(-2px);background:rgba(212,175,55,.05)}
+
+    /* header */
+    header{position:sticky;top:0;z-index:50;background:linear-gradient(90deg, rgba(0,0,0,.35), rgba(0,0,0,.35));border-bottom:1px solid rgba(212,175,55,.08)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px}
+    .logo{font-weight:900;color:var(--gold);letter-spacing:.6px}
+    nav ul{display:flex;gap:18px;list-style:none}
+    nav a{color:#efe6cf;text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--gold)}
+
+    /* hero */
+    .hero{min-height:40vh;display:grid;place-items:center;position:relative;padding:40px 24px;text-align:center}
     .hero::before{
-      content:"";position:absolute;inset:0;
-      background:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-      filter:contrast(1.05) brightness(.65) saturate(1.05);
-      transform: scale(1.04);
+      content:"";position:absolute;inset:0;background:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;filter:brightness(.55) saturate(.95);z-index:0;border-bottom:1px solid rgba(0,0,0,.2)
     }
-    .hero-inner{position:relative;z-index:1;padding:0 5%}
-    .hero h1{font-size:clamp(2rem,4.5vw,3.2rem);color:var(--secondary);text-shadow:0 6px 24px rgba(0,0,0,.6)}
-    .hero p{margin-top:10px;color:#f1e6cf;max-width:760px;margin-inline:auto}
-    .hero-actions{margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+    .hero-inner{position:relative;z-index:2;max-width:920px;padding:20px}
+    .hero h1{font-size:clamp(1.6rem,3.2vw,2.6rem);color:var(--gold);margin-bottom:8px}
+    .hero p{color:#f1e7cf;margin-bottom:14px}
 
-    /* ===== Admin Floating Buttons ===== */
+    /* admin floating buttons */
     #adminLoginBtn,#logoutBtn{
-      position:fixed;right:18px;z-index:30;border:none;border-radius:999px;cursor:pointer;padding:.7rem 1rem;
-      display:flex;align-items:center;gap:.5rem;font-weight:700
+      position:fixed;right:18px;z-index:60;border:none;border-radius:999px;cursor:pointer;padding:.6rem 1rem;display:flex;align-items:center;gap:.5rem;font-weight:700
     }
-    #adminLoginBtn{bottom:18px;background:var(--primary-2);color:#fff;border:1px solid rgba(212,175,55,.35)}
-    #adminLoginBtn:hover{box-shadow:0 12px 28px rgba(138,63,6,.35)}
+    #adminLoginBtn{bottom:18px;background:var(--primary);color:#fff;border:1px solid rgba(212,175,55,.28)}
     #logoutBtn{bottom:68px;background:#2a2724;color:#fff;border:1px solid rgba(212,175,55,.25);display:none}
-    #logoutBtn:hover{box-shadow:0 12px 28px rgba(0,0,0,.35)}
 
-    /* ===== Modal (Admin Login) ===== */
-    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40;align-items:center;justify-content:center;padding:20px}
+    /* modal */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:100;align-items:center;justify-content:center;padding:18px}
     .modal.active{display:flex}
-    .modal-card{
-      width:min(92%,420px);background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid rgba(212,175,55,.25);border-radius:18px;padding:22px 20px;box-shadow:0 25px 70px rgba(0,0,0,.55);backdrop-filter:blur(10px)
-    }
-    .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-    .close-modal{cursor:pointer;font-size:1.5rem;color:#f0e8d6}
-    .modal-card h2{color:var(--secondary);font-size:1.3rem}
-    .form-group{margin-top:12px}
-    .form-group label{display:block;margin-bottom:6px;color:#eadfc6;font-weight:600}
-    .form-group input{width:100%;padding:.75rem;border-radius:10px;border:1px solid rgba(212,175,55,.25);background:#14100c;color:#f5ead3}
-    .auth-btn{margin-top:12px;width:100%}
+    .modal-card{width:min(92%,420px);background:linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.02));padding:20px;border-radius:14px;border:1px solid rgba(212,175,55,.16);box-shadow:0 20px 60px rgba(0,0,0,.6)}
+    .modal h2{color:var(--gold);margin-bottom:8px}
+    .form-row{margin-top:12px}
 
-    /* ===== Admin Controls (Add Product) ===== */
-    .admin-controls{display:none;padding:40px 5%}
+    /* admin controls */
+    .admin-controls{display:none;padding:28px 24px}
     .admin-controls.active{display:block}
-    .upload-form{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid rgba(212,175,55,.25);
-      border-radius:18px;padding:22px;box-shadow:0 16px 40px rgba(0,0,0,.45);
+    .card{background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border:1px solid rgba(255,255,255,.03);padding:18px;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.45);margin-bottom:18px}
+    label{display:block;font-weight:700;color:#e6d8b9;margin-bottom:6px}
+    input[type="text"], input[type="email"], input[type="number"], textarea, input[type="file"]{
+      width:100%;padding:10px;border-radius:10px;border:1px solid rgba(212,175,55,.12);background:transparent;color:#efe6cf
     }
-    .upload-title{display:flex;align-items:center;gap:10px;color:var(--secondary);margin-bottom:8px}
-    .upload-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
-    .upload-grid .form-group textarea,
-    .upload-grid .form-group input,
-    .upload-grid .form-group select{background:#14100c;color:#f5ead3;border:1px solid rgba(212,175,55,.25);border-radius:10px}
-    .upload-btn{margin-top:6px}
-    @media(max-width:720px){.upload-grid{grid-template-columns:1fr}}
 
-    /* ===== Products ===== */
-    .section{padding:64px 0}
-    .section-title{text-align:center;margin-bottom:28px;color:var(--secondary);font-size:1.8rem}
-    .products-grid{
-      display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px
-    }
-    .product-card{
-      background: #171310;
-      border:1px solid rgba(212,175,55,.18);
-      border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.35);
-      transform: translateY(0); transition:.25s transform,.25s box-shadow;
-    }
-    .product-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.45)}
-    .product-img{height:220px;overflow:hidden}
-    .product-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform .5s ease}
-    .product-card:hover .product-img img{transform:scale(1.1)}
-    .product-info{padding:14px}
-    .product-info h3{color:#f2e6cd;margin-bottom:4px}
-    .product-info p{color:#d9c9aa;opacity:.9;margin-bottom:8px;font-size:.95rem}
-    .product-price{display:inline-block;font-weight:800;color:var(--secondary);margin-bottom:10px}
-    .whatsapp-btn{display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#000;text-decoration:none;padding:.55rem .9rem;border-radius:10px;font-weight:700}
-    .whatsapp-btn:hover{filter:brightness(1.05)}
-    .delete-btn{
-      margin-left:8px;background:#8a1f1f;color:#fff;border:none;padding:.55rem .8rem;border-radius:10px;cursor:pointer;font-weight:700;display:none
-    }
-    .admin-logged-in .delete-btn{display:inline-flex}
+    /* products grid */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px}
+    .product-card{background:var(--card);border-radius:12px;border:1px solid rgba(212,175,55,.08);overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,.5);transition:transform .25s}
+    .product-card:hover{transform:translateY(-6px)}
+    .product-img{height:180px;overflow:hidden;background:#080705}
+    .product-img img{width:100%;height:100%;object-fit:cover}
+    .product-info{padding:12px}
+    .product-info h3{color:#f1e1c6;margin-bottom:6px}
+    .product-info p{color:var(--muted);font-size:.95rem;margin-bottom:8px}
+    .product-price{color:var(--gold);font-weight:800}
+    .whatsapp-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .75rem;border-radius:8px;background:#25D366;color:#000;font-weight:800;text-decoration:none;border:none}
 
-    /* ===== About ===== */
-    .about{background:linear-gradient(180deg,#16110d 0%,#110e0b 100%)}
-    .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
-    .about-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid rgba(212,175,55,.22);border-radius:16px;padding:18px;min-height:140px
-    }
-    .about-card h3{color:var(--secondary);margin-bottom:6px}
-    @media(max-width:900px){.about-grid{grid-template-columns:1fr 1fr}}
-    @media(max-width:620px){.about-grid{grid-template-columns:1fr}}
+    /* about/inquiry */
+    .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+    .about-card{padding:12px;background:linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.01));border-radius:10px;border:1px solid rgba(212,175,55,.06)}
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:14px}
+    @media(max-width:880px){.contact-grid,.about-grid{grid-template-columns:1fr}}
 
-    /* ===== Contact / Inquiry ===== */
-    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
-    .contact-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid rgba(212,175,55,.22);border-radius:16px;padding:18px
-    }
-    .contact-card input,.contact-card textarea{
-      width:100%;padding:.8rem;border-radius:10px;border:1px solid rgba(212,175,55,.25);
-      background:#14100c;color:#f5ead3;margin-top:8px
-    }
-    .contact-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    @media(max-width:880px){.contact-grid{grid-template-columns:1fr}}
+    footer{padding:18px 24px;text-align:center;color:#c9b98e;margin-top:20px;border-top:1px solid rgba(212,175,55,.06)}
 
-    /* ===== Footer ===== */
-    footer{background:#0e0c0a;border-top:1px solid rgba(212,175,55,.18);text-align:center;padding:34px 5%}
-    .social-links a{color:#e9dec8;margin:0 8px;font-size:1.35rem}
-    .social-links a:hover{color:var(--secondary)}
+    /* small helpers */
+    .muted{color:var(--muted)}
+    .tag{display:inline-block;padding:.2rem .5rem;background:rgba(212,175,55,.08);border-radius:999px;color:var(--gold);font-weight:700;font-size:.82rem}
+
   </style>
 </head>
 <body>
 
-  <!-- ===== Floating Gems (visual flair) ===== -->
-  <span class="gem g1"></span><span class="gem g2"></span><span class="gem g3"></span><span class="gem g4"></span>
+  <!-- Admin Floating Buttons -->
+  <button id="adminLoginBtn" title="Admin Login"><i class="fas fa-lock"></i> Admin</button>
+  <button id="logoutBtn" title="Logout"><i class="fas fa-sign-out-alt"></i> Logout</button>
 
-  <!-- ===== Welcome Screen ===== -->
+  <!-- Welcome Screen -->
   <div class="welcome-screen" id="welcomeScreen" aria-hidden="false">
-    <div class="welcome-box">
-      <div class="welcome-badge"><span class="tag">Since 1995 • Premium</span></div>
-      <h1 class="welcome-title">AD.Sami Gems Collection</h1>
-      <p class="welcome-sub">Premium Quality Gemstones & Jewelry</p>
-      <p class="welcome-hint">If you are Admin, please Login. Otherwise, click Skip to continue.</p>
+    <div class="welcome-card">
+      <div style="margin-bottom:10px"><span class="tag">AD.Sami Gems PK</span></div>
+      <div class="welcome-title">Welcome to AD.Sami Gems Collection</div>
+      <div class="welcome-sub">Premium Quality Gemstones & Jewelry — Since 1995</div>
       <div class="welcome-actions">
-        <button class="btn btn-primary" onclick="openLogin()"><i class="fa-solid fa-lock"></i> Admin Login</button>
-        <button class="btn btn-ghost" onclick="skipWelcome()"><i class="fa-solid fa-forward"></i> Skip & View Products</button>
+        <button class="btn btn-primary" onclick="openLoginModal()"><i class="fa fa-user-lock"></i> Admin Login</button>
+        <button class="btn btn-ghost" onclick="skipWelcome()"><i class="fa fa-forward"></i> Skip & View Products</button>
       </div>
     </div>
   </div>
 
-  <!-- ===== Admin Floating Buttons ===== -->
-  <button id="adminLoginBtn"><i class="fas fa-lock"></i> Admin</button>
-  <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
-
-  <!-- ===== Admin Login Modal ===== -->
-  <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+  <!-- Login Modal -->
+  <div class="modal" id="loginModal" aria-hidden="true">
     <div class="modal-card">
-      <div class="modal-head">
-        <h2 id="loginTitle"><i class="fa-solid fa-shield-halved"></i> Admin Login</h2>
-        <span class="close-modal" id="closeModal" title="Close">&times;</span>
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h2>Admin Login</h2>
+        <button id="closeModal" style="background:transparent;border:none;color:#efe6cf;font-size:20px;cursor:pointer">&times;</button>
       </div>
       <form id="loginForm">
-        <div class="form-group">
-          <label for="email">Email address</label>
-          <input id="email" type="email" placeholder="owner@email.com" required/>
+        <div class="form-row">
+          <label for="adminEmail">Email</label>
+          <input id="adminEmail" type="email" placeholder="admin email" required value="khank8414202@gmail.com"/>
         </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input id="password" type="password" placeholder="••••••••" required/>
+        <div class="form-row">
+          <label for="adminPassword">Password</label>
+          <input id="adminPassword" type="password" placeholder="password" required value="sami5657"/>
         </div>
-        <button type="submit" class="btn btn-primary auth-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+        <div style="margin-top:12px;display:flex;gap:10px;justify-content:flex-end">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
       </form>
     </div>
   </div>
 
-  <!-- ===== Header / Nav ===== -->
+  <!-- Header -->
   <header>
     <div class="nav container">
       <div class="logo">Ad Sami Gems PK</div>
@@ -283,307 +183,388 @@
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section class="hero" id="home" aria-label="Hero banner">
-    <div class="hero-inner">
+  <!-- Hero -->
+  <section id="home" class="hero">
+    <div class="hero-inner container">
       <h1>Premium Natural Gemstones</h1>
       <p>Discover curated stones from Pakistan and around the world — authenticity, clarity and beauty you can trust.</p>
-      <div class="hero-actions">
-        <a href="#products" class="btn btn-primary"><i class="fa-solid fa-gem"></i> Explore Collection</a>
-        <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-comment-dots"></i> Send Inquiry</a>
+      <div style="margin-top:14px">
+        <a class="btn btn-primary" href="#products"><i class="fa-solid fa-gem"></i> Explore Collection</a>
+        <a class="btn btn-ghost" href="#contact"><i class="fa-solid fa-comment-dots"></i> Send Inquiry</a>
       </div>
     </div>
   </section>
 
-  <!-- ===== Admin Controls (Add New Product) ===== -->
-  <section class="admin-controls" id="adminControls" aria-label="Admin Controls">
-    <div class="container">
-      <div class="upload-form">
-        <div class="upload-title">
-          <i class="fa-solid fa-square-plus"></i>
-          <h2>Add New Product</h2>
-        </div>
-        <form id="productForm">
-          <div class="upload-grid">
-            <div class="form-group">
-              <label for="productName">Product Name</label>
-              <input type="text" id="productName" placeholder="e.g., Natural Emerald" required>
-            </div>
-            <div class="form-group">
-              <label for="productPrice">Price (USD)</label>
-              <input type="number" id="productPrice" step="0.01" placeholder="e.g., 1250" required>
-            </div>
-            <div class="form-group" style="grid-column:1/-1">
-              <label for="productDescription">Description</label>
-              <textarea id="productDescription" rows="3" placeholder="Clarity, origin, treatment info..." required></textarea>
-            </div>
-            <div class="form-group">
-              <label for="productImage">Image</label>
-              <input type="file" id="productImage" accept="image/*" required>
-            </div>
-            <div class="form-group">
-              <label for="productOrigin">Origin (optional)</label>
-              <input type="text" id="productOrigin" placeholder="e.g., Zambia / Burma">
-            </div>
+  <!-- Admin Controls -->
+  <section id="adminControls" class="admin-controls container" aria-hidden="true">
+    <div class="card">
+      <h3 style="color:var(--gold)">Add New Product</h3>
+      <form id="productForm">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <div>
+            <label>Product Name</label>
+            <input id="productName" type="text" placeholder="e.g., Natural Emerald" required>
           </div>
-          <button type="submit" class="btn btn-primary upload-btn"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Product</button>
+          <div>
+            <label>Price (USD)</label>
+            <input id="productPrice" type="number" step="0.01" placeholder="e.g., 1250" required>
+          </div>
+        </div>
+
+        <div style="margin-top:12px">
+          <label>Description</label>
+          <textarea id="productDescription" rows="3" placeholder="Clarity, origin, info..." required></textarea>
+        </div>
+
+        <div style="margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:center">
+          <div>
+            <label>Image (optional)</label>
+            <input id="productImage" type="file" accept="image/*">
+            <small class="muted">(If provided image will be saved as base64 in DB.)</small>
+          </div>
+          <div>
+            <label>Origin (optional)</label>
+            <input id="productOrigin" type="text" placeholder="e.g., Zambia / Burma">
+          </div>
+        </div>
+
+        <div style="margin-top:14px;display:flex;gap:10px;justify-content:flex-end">
+          <button type="submit" class="btn btn-primary"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Product</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <!-- Products -->
+  <section id="products" class="container section" style="padding-top:18px">
+    <h2 style="color:var(--gold);margin-bottom:12px">Our Collection</h2>
+    <div id="productsGrid" class="products-grid">
+      <!-- product cards injected here -->
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="container section">
+    <h2 style="color:var(--gold);margin-bottom:12px">About Ad Sami Gems PK</h2>
+    <p class="muted" style="max-width:900px;margin-bottom:12px">
+      We are a trusted supplier of premium gemstones from Pakistan and around the world.
+      With 15+ years of experience, we focus on authenticity, clarity and fair pricing.
+    </p>
+    <div class="about-grid">
+      <div class="about-card">
+        <h4 style="color:var(--gold)">Our Mission</h4>
+        <p class="muted">Provide genuine, high-quality gemstones with transparent pricing and excellent service.</p>
+      </div>
+      <div class="about-card">
+        <h4 style="color:var(--gold)">Our Promise</h4>
+        <p class="muted">100% natural stones with proper certification and money-back guarantee on authenticity.</p>
+      </div>
+      <div class="about-card">
+        <h4 style="color:var(--gold)">Customer Trust</h4>
+        <p class="muted">Personalized assistance, WhatsApp ordering, and secure delivery.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact / Inquiry -->
+  <section id="contact" class="container section">
+    <h2 style="color:var(--gold);margin-bottom:12px">Send Inquiry</h2>
+    <div class="contact-grid">
+      <div class="contact-card card">
+        <h4 style="color:var(--gold)">Get In Touch</h4>
+        <p class="muted">Message us directly via WhatsApp or Email for quick replies.</p>
+        <div style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap">
+          <a class="btn btn-primary" href="https://wa.me/923401073635" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+          <a class="btn btn-ghost" href="https://instagram.com/gemsandmineralsonly" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+          <a class="btn btn-ghost" href="mailto:khank8414202@gmail.com"><i class="fa-solid fa-envelope"></i> Email</a>
+        </div>
+      </div>
+
+      <div class="contact-card card">
+        <h4 style="color:var(--gold)">Quick Inquiry Form</h4>
+        <form id="inquiryForm">
+          <label>Your Name</label>
+          <input id="inqName" type="text" required>
+          <label style="margin-top:8px">Email</label>
+          <input id="inqEmail" type="email" required>
+          <label style="margin-top:8px">Message</label>
+          <textarea id="inqMsg" rows="4" required></textarea>
+
+          <div style="margin-top:10px;display:flex;gap:10px;justify-content:flex-end">
+            <button type="submit" class="btn btn-primary">Send</button>
+            <button type="button" id="sendWhatsApp" class="btn btn-ghost"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+          </div>
         </form>
       </div>
     </div>
   </section>
 
-  <!-- ===== Products ===== -->
-  <section class="section" id="products" aria-label="Products">
-    <div class="container">
-      <h2 class="section-title">Our Collection</h2>
-      <div class="products-grid" id="productsGrid">
-        <!-- Sample Product 1 -->
-        <div class="product-card" data-id="1">
-          <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=70" alt="Emerald Gemstone">
-          </div>
-          <div class="product-info">
-            <span class="tag">Emerald</span>
-            <h3>Natural Emerald</h3>
-            <p>High quality Zambian emerald with excellent clarity.</p>
-            <span class="product-price">$1,250.00</span>
-            <a class="whatsapp-btn" href="https://wa.me/923401073635?text=I'm%20interested%20in%20Natural%20Emerald" target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp"></i> Inquire Now
-            </a>
-            <button class="delete-btn" onclick="deleteProduct(this)">
-              <i class="fas fa-trash"></i> Delete
-            </button>
-          </div>
-        </div>
-        <!-- Sample Product 2 -->
-        <div class="product-card" data-id="2">
-          <div class="product-img">
-            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=70" alt="Ruby Gemstone">
-          </div>
-          <div class="product-info">
-            <span class="tag">Ruby</span>
-            <h3>Burmese Ruby</h3>
-            <p>AAA quality pigeon blood ruby from Myanmar.</p>
-            <span class="product-price">$2,800.00</span>
-            <a class="whatsapp-btn" href="https://wa.me/923401073635?text=I'm%20interested%20in%20Burmese%20Ruby" target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp"></i> Inquire Now
-            </a>
-            <button class="delete-btn" onclick="deleteProduct(this)">
-              <i class="fas fa-trash"></i> Delete
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== About ===== -->
-  <section class="section about" id="about" aria-label="About">
-    <div class="container">
-      <h2 class="section-title">About Ad Sami Gems PK</h2>
-      <p style="text-align:center;color:#e9dec8b3;max-width:900px;margin:0 auto 16px">
-        We are a trusted supplier of premium gemstones from Pakistan and around the world. With 15+ years of experience, we focus on authenticity, clarity and fair pricing.
-      </p>
-
-      <div class="about-grid">
-        <div class="about-card">
-          <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
-          <p>Provide genuine, high-quality gemstones with transparent pricing and excellent service.</p>
-        </div>
-        <div class="about-card">
-          <h3><i class="fa-solid fa-certificate"></i> Our Promise</h3>
-          <p>100% natural stones with proper certification and money-back guarantee on authenticity.</p>
-        </div>
-        <div class="about-card">
-          <h3><i class="fa-solid fa-handshake"></i> Customer Trust</h3>
-          <p>Personalized assistance, WhatsApp ordering, and secure worldwide delivery.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Contact / Inquiry ===== -->
-  <section class="section" id="contact" aria-label="Contact">
-    <div class="container">
-      <h2 class="section-title">Send Inquiry</h2>
-      <div class="contact-grid">
-        <div class="contact-card">
-          <h3 style="color:var(--secondary);margin-bottom:6px"><i class="fa-solid fa-comments"></i> Get In Touch</h3>
-          <p style="color:#e9dec8b3;margin-bottom:12px">Have questions about a stone? Message us directly.</p>
-          <div class="contact-actions">
-            <a class="btn btn-primary" href="https://wa.me/923401073635" target="_blank" rel="noopener">
-              <i class="fab fa-whatsapp"></i> WhatsApp: +92 340 1073635
-            </a>
-            <a class="btn btn-ghost" href="https://instagram.com/gemsandmineralsonly" target="_blank" rel="noopener">
-              <i class="fab fa-instagram"></i> Instagram
-            </a>
-            <a class="btn btn-ghost" href="mailto:khank8414202@gmail.com">
-              <i class="fa-solid fa-envelope"></i> Email
-            </a>
-          </div>
-        </div>
-
-        <div class="contact-card">
-          <h3 style="color:var(--secondary);margin-bottom:6px"><i class="fa-solid fa-paper-plane"></i> Quick Inquiry Form</h3>
-          <form id="inquiryForm">
-            <label for="inqName" style="display:block;color:#eadfc6;font-weight:600;margin-top:6px">Your Name</label>
-            <input id="inqName" type="text" placeholder="Your Name" required/>
-
-            <label for="inqEmail" style="display:block;color:#eadfc6;font-weight:600;margin-top:10px">Email</label>
-            <input id="inqEmail" type="email" placeholder="you@example.com" required/>
-
-            <label for="inqMsg" style="display:block;color:#eadfc6;font-weight:600;margin-top:10px">Message</label>
-            <textarea id="inqMsg" rows="4" placeholder="Which gemstone are you interested in?" required></textarea>
-
-            <div class="contact-actions">
-              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane-top"></i> Send</button>
-              <button type="button" class="btn btn-ghost" id="sendWhatsApp"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ===== Footer ===== -->
   <footer>
-    <div class="logo" style="margin-bottom:6px">Ad Sami Gems PK</div>
-    <p style="color:#e9dec8b3">Premium Quality Gemstones & Jewelry</p>
-    <div class="social-links" style="margin:12px 0">
-      <a href="https://wa.me/923401073635" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
-      <a href="https://instagram.com/gemsandmineralsonly" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
-      <a href="mailto:khank8414202@gmail.com"><i class="fas fa-envelope"></i></a>
+    <div style="font-weight:800;color:var(--gold)">Ad Sami Gems PK</div>
+    <div class="muted">Premium Quality Gemstones & Jewelry</div>
+    <div style="margin-top:8px">
+      <a href="https://wa.me/923401073635" target="_blank" style="color:inherit;margin-right:8px"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://instagram.com/gemsandmineralsonly" target="_blank" style="color:inherit;margin-right:8px"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:khank8414202@gmail.com" style="color:inherit"><i class="fa-solid fa-envelope"></i></a>
     </div>
-    <p style="color:#9e8c67;margin-top:8px">&copy; 2025 Ad Sami Gems PK. All Rights Reserved.</p>
+    <div style="margin-top:10px;color:#b9a974">&copy; 2025 Ad Sami Gems PK. All Rights Reserved.</div>
   </footer>
 
-  <!-- ===== Scripts ===== -->
-  <script>
-    // ========= Welcome Screen =========
-    function openLogin(){ document.getElementById('loginModal').classList.add('active'); }
-    function skipWelcome(){ document.getElementById('welcomeScreen').style.display='none'; }
-    // Auto-hide welcome on hash navigation (if user opens via anchor)
-    if(location.hash){ skipWelcome(); }
+  <!-- Supabase JS (cdn) -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.24.0/dist/umd/supabase.min.js"></script>
 
-    // ========= Elements =========
+  <script>
+    /* =======================
+       Supabase config (FROM YOU)
+       =======================
+       You already gave:
+       URL: https://tbafkpayucabidyoxknt.supabase.co
+       ANON KEY: (the long key)
+    */
+    const SUPABASE_URL = "https://tbafkpayucabidyoxknt.supabase.co";
+    const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRiYWZrcGF5dWNhYmlkeW94a250Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTk2ODc4NDQsImV4cCI6MjA3NTI2Mzg0NH0.KSVcHU3AMQcXCft1CnFAMl-XCwQHeObpJXlLBffOOvs";
+
+    // Initialize Supabase client (global window.supabase available)
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    // UI elements
     const adminLoginBtn = document.getElementById('adminLoginBtn');
     const logoutBtn = document.getElementById('logoutBtn');
     const loginModal = document.getElementById('loginModal');
     const closeModal = document.getElementById('closeModal');
     const loginForm = document.getElementById('loginForm');
+    const welcomeScreen = document.getElementById('welcomeScreen');
     const adminControls = document.getElementById('adminControls');
-    const productsGrid = document.getElementById('productsGrid');
     const productForm = document.getElementById('productForm');
+    const productsGrid = document.getElementById('productsGrid');
 
-    let isAdminLoggedIn = false;
-    let currentProductId = 3; // Next ID for new products
+    // Admin credentials (local simple auth)
+    const ADMIN_EMAIL = "khank8414202@gmail.com";
+    const ADMIN_PASS = "sami5657";
 
-    // ========= Admin Buttons =========
-    adminLoginBtn.addEventListener('click', ()=> loginModal.classList.add('active'));
-    closeModal.addEventListener('click', ()=> loginModal.classList.remove('active'));
-    window.addEventListener('click', (e)=>{ if(e.target===loginModal) loginModal.classList.remove('active'); });
+    // Helpers
+    function openLoginModal(){ loginModal.classList.add('active'); loginModal.setAttribute('aria-hidden','false');}
+    function closeLoginModal(){ loginModal.classList.remove('active'); loginModal.setAttribute('aria-hidden','true');}
+    function skipWelcome(){ welcomeScreen.style.display = 'none'; window.scrollTo({top:0,behavior:'smooth'}); }
 
-    function toggleAdminUI(loggedIn){
-      isAdminLoggedIn = loggedIn;
-      if(loggedIn){
-        document.body.classList.add('admin-logged-in');
+    adminLoginBtn.addEventListener('click', openLoginModal);
+    closeModal.addEventListener('click', closeLoginModal);
+    window.addEventListener('click', e => { if(e.target === loginModal) closeLoginModal(); });
+
+    // Toggle admin UI
+    function toggleAdminUI(show){
+      if(show){
         adminControls.classList.add('active');
-        logoutBtn.style.display='block';
-        adminLoginBtn.style.display='none';
-      }else{
-        document.body.classList.remove('admin-logged-in');
+        document.getElementById('adminControls').setAttribute('aria-hidden','false');
+        logoutBtn.style.display = 'block';
+        adminLoginBtn.style.display = 'none';
+      } else {
         adminControls.classList.remove('active');
-        logoutBtn.style.display='none';
-        adminLoginBtn.style.display='block';
+        document.getElementById('adminControls').setAttribute('aria-hidden','true');
+        logoutBtn.style.display = 'none';
+        adminLoginBtn.style.display = 'block';
       }
     }
 
-    // ========= Dummy Auth (replace with Firebase later) =========
-    loginForm.addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      const password = document.getElementById('password').value.trim();
-      if(email==='khank8414202@gmail.com' && password==='sami5657'){
-        toggleAdminUI(true);
-        loginModal.classList.remove('active');
-        skipWelcome();
-        alert('Admin login successful!');
-      } else {
-        alert('Invalid credentials. Please try again.');
-      }
-    });
     logoutBtn.addEventListener('click', ()=> toggleAdminUI(false));
 
-    // ========= Product Delete =========
-    window.deleteProduct = function(btn){
-      const card = btn.closest('.product-card');
-      if(confirm('Are you sure you want to delete this product?')) card.remove();
-      // TODO: delete from Firestore if connected
-    }
-
-    // ========= Add New Product (Local Preview) =========
-    productForm.addEventListener('submit', (e)=>{
+    // ========== Login ==========
+    loginForm.addEventListener('submit', (e)=>{
       e.preventDefault();
-      const name = document.getElementById('productName').value.trim();
-      const desc = document.getElementById('productDescription').value.trim();
-      const price = parseFloat(document.getElementById('productPrice').value);
-      const origin = document.getElementById('productOrigin').value.trim();
-      const imgFile = document.getElementById('productImage').files[0];
-      if(!imgFile){ return alert('Please select an image'); }
+      const email = document.getElementById('adminEmail').value.trim();
+      const pass = document.getElementById('adminPassword').value.trim();
 
-      const reader = new FileReader();
-      reader.onload = (ev)=>{
-        const id = currentProductId++;
-        const card = document.createElement('div');
-        card.className='product-card';
-        card.dataset.id = id;
-        const originTag = origin ? `<span class="tag">${origin}</span>` : '';
-        card.innerHTML = `
-          <div class="product-img">
-            <img src="${ev.target.result}" alt="${name}">
-          </div>
-          <div class="product-info">
-            ${originTag}
-            <h3>${name}</h3>
-            <p>${desc}</p>
-            <span class="product-price">$${isFinite(price)? price.toFixed(2): '0.00'}</span>
-            <a class="whatsapp-btn" target="_blank" rel="noopener"
-               href="https://wa.me/923401073635?text=I'm%20interested%20in%20${encodeURIComponent(name)}">
-              <i class="fab fa-whatsapp"></i> Inquire Now
-            </a>
-            <button class="delete-btn" onclick="deleteProduct(this)">
-              <i class="fas fa-trash"></i> Delete
-            </button>
-          </div>`;
-        productsGrid.prepend(card);
-        productForm.reset();
-        window.scrollTo({top: document.getElementById('products').offsetTop - 60, behavior:'smooth'});
-        alert('Product added successfully!');
-      };
-      reader.readAsDataURL(imgFile);
+      if(email === ADMIN_EMAIL && pass === ADMIN_PASS){
+        alert('Admin login successful');
+        closeLoginModal();
+        skipWelcome();
+        toggleAdminUI(true);
+      } else {
+        alert('Invalid credentials');
+      }
     });
 
-    // ========= Inquiry Form Handling =========
+    // ========== Load posts from Supabase ==========
+    async function loadPosts(){
+      try {
+        // select all posts, order by created_at desc
+        const { data, error } = await supabase
+          .from('posts')
+          .select('*')
+          .order('created_at', { ascending: false });
+
+        if(error){
+          console.error('Error fetching posts:', error);
+          productsGrid.innerHTML = `<div class="card muted">Error loading posts. Check console.</div>`;
+          return;
+        }
+
+        productsGrid.innerHTML = "";
+        if(!data || data.length === 0){
+          productsGrid.innerHTML = `<div class="card muted">No products yet. Admin can add new products.</div>`;
+          return;
+        }
+
+        data.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'product-card';
+          const imgHtml = item.image ? `<div class="product-img"><img src="${item.image}" alt="${escapeHtml(item.title)}"></div>` : `<div class="product-img" style="display:flex;align-items:center;justify-content:center;color:#b9a974">No Image</div>`;
+          const originTag = item.origin ? `<div style="margin-bottom:6px"><span class="tag">${escapeHtml(item.origin)}</span></div>` : '';
+          card.innerHTML = `
+            ${imgHtml}
+            <div class="product-info">
+              ${originTag}
+              <h3>${escapeHtml(item.title)}</h3>
+              <p>${escapeHtml(item.description || '')}</p>
+              <div style="display:flex;gap:8px;align-items:center;justify-content:space-between;margin-top:8px">
+                <div>
+                  <span class="product-price">${item.price ? '$' + parseFloat(item.price).toFixed(2) : ''}</span>
+                </div>
+                <div style="display:flex;gap:8px;align-items:center">
+                  <a class="whatsapp-btn" target="_blank" rel="noopener" href="https://wa.me/923401073635?text=${encodeURIComponent("I'm interested in " + item.title)}"><i class="fab fa-whatsapp"></i> Inquire</a>
+                  <button class="delete-btn" style="display:none" onclick="deleteProduct('${item.id}', this)"><i class="fas fa-trash"></i></button>
+                </div>
+              </div>
+            </div>
+          `;
+          productsGrid.appendChild(card);
+        });
+
+        // show delete buttons if admin logged in
+        if(document.body.classList.contains('admin-logged-in')){
+          document.querySelectorAll('.delete-btn').forEach(b=>b.style.display='inline-flex');
+        } else {
+          document.querySelectorAll('.delete-btn').forEach(b=>b.style.display='none');
+        }
+
+      } catch (err){
+        console.error(err);
+      }
+    }
+
+    // helper to escape HTML
+    function escapeHtml(str = ''){
+      return String(str)
+        .replaceAll('&','&amp;')
+        .replaceAll('<','&lt;')
+        .replaceAll('>','&gt;')
+        .replaceAll('"','&quot;')
+        .replaceAll("'",'&#039;');
+    }
+
+    // ========== Add Post (save to Supabase) ==========
+    productForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('productName').value.trim();
+      const price = document.getElementById('productPrice').value.trim();
+      const desc = document.getElementById('productDescription').value.trim();
+      const origin = document.getElementById('productOrigin').value.trim();
+      const imgInput = document.getElementById('productImage');
+
+      // optional image -> convert to base64 (small images only)
+      if(imgInput.files && imgInput.files[0]){
+        const file = imgInput.files[0];
+        // limit file size to ~1.5MB to avoid huge DB rows (you can increase if needed)
+        if(file.size > 1_800_000){
+          return alert('Image too large. Please choose an image under ~1.8MB or use Supabase Storage (we can set up).');
+        }
+        const reader = new FileReader();
+        reader.onload = async function(evt){
+          const base64 = evt.target.result; // data:image/..;base64,...
+          await insertPost({ title: name, price: price || null, description: desc, origin: origin || null, image: base64 });
+        };
+        reader.readAsDataURL(file);
+      } else {
+        await insertPost({ title: name, price: price || null, description: desc, origin: origin || null, image: null });
+      }
+    });
+
+    async function insertPost(payload){
+      try {
+        // insert into posts table
+        // Note: ensure your Supabase table 'posts' has columns:
+        // id (uuid primary key default gen_random_uuid()), title text, price numeric/text, description text, origin text, image text, created_at timestamp default now()
+        const { data, error } = await supabase
+          .from('posts')
+          .insert([{
+            title: payload.title,
+            price: payload.price,
+            description: payload.description,
+            origin: payload.origin,
+            image: payload.image,
+            created_at: new Date().toISOString()
+          }]);
+
+        if(error){
+          console.error('Insert error', error);
+          alert('Error saving product. Check console.');
+          return;
+        }
+
+        // reset form
+        document.getElementById('productForm').reset();
+        await loadPosts();
+        alert('Product saved in Supabase!');
+      } catch(err){
+        console.error(err);
+        alert('Unexpected error. See console.');
+      }
+    }
+
+    // ========== Delete product (admin only) ==========
+    async function deleteProduct(id, btn){
+      if(!confirm('Delete this product?')) return;
+      try {
+        const { data, error } = await supabase
+          .from('posts')
+          .delete()
+          .eq('id', id);
+
+        if(error){ console.error(error); alert('Delete failed'); return; }
+        btn.closest('.product-card').remove();
+        alert('Deleted');
+      } catch(err){
+        console.error(err);
+      }
+    }
+    // expose deleteProduct to global for onclick attribute
+    window.deleteProduct = deleteProduct;
+
+    // ========== Inquiry form ==========
     const inquiryForm = document.getElementById('inquiryForm');
     const sendWhatsAppBtn = document.getElementById('sendWhatsApp');
 
     inquiryForm.addEventListener('submit', (e)=>{
       e.preventDefault();
-      const name = document.getElementById('inqName').value.trim();
-      const email = document.getElementById('inqEmail').value.trim();
-      const msg = document.getElementById('inqMsg').value.trim();
-      const subject = encodeURIComponent(`Gemstone Inquiry from ${name}`);
-      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
+      const n = document.getElementById('inqName').value.trim();
+      const em = document.getElementById('inqEmail').value.trim();
+      const m = document.getElementById('inqMsg').value.trim();
+      // For now, open mail client
+      const subject = encodeURIComponent('Inquiry from ' + n);
+      const body = encodeURIComponent(`Name: ${n}\nEmail: ${em}\n\nMessage:\n${m}`);
       window.location.href = `mailto:khank8414202@gmail.com?subject=${subject}&body=${body}`;
     });
 
     sendWhatsAppBtn.addEventListener('click', ()=>{
-      const name = document.getElementById('inqName').value.trim();
-      const email = document.getElementById('inqEmail').value.trim();
-      const msg = document.getElementById('inqMsg').value.trim();
-      const text = encodeURIComponent(`Hello AD.Sami Gems,\n\nName: ${name}\nEmail: ${email}\nMessage: ${msg}`);
+      const n = document.getElementById('inqName').value.trim();
+      const em = document.getElementById('inqEmail').value.trim();
+      const m = document.getElementById('inqMsg').value.trim();
+      const text = encodeURIComponent(`Hello AD.Sami Gems,\n\nName: ${n}\nEmail: ${em}\nMessage: ${m}`);
       window.open(`https://wa.me/923401073635?text=${text}`,'_blank','noopener');
     });
+
+    // initialize
+    (async function init(){
+      // hide admin controls initially
+      toggleAdminUI(false);
+
+      // if user navigates with hash, remove welcome screen
+      if(location.hash) skipWelcome();
+
+      // hook admin login button to open modal (already added)
+      // load posts on page load
+      await loadPosts();
+    })();
   </script>
 </body>
 </html>
