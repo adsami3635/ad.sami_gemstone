@@ -1,210 +1,589 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ad Sami Gems PK</title>
+  <!-- ✅ SEO / Meta -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Ad Sami Gems PK | Premium Gemstones & Jewelry</title>
+  <meta name="description" content="Discover premium natural gemstones and jewelry at Ad Sami Gems PK. High-quality, verified stones with WhatsApp ordering and secure delivery.">
+  <meta name="keywords" content="Ad Sami Gems, gemstones, jewelry, natural gems, buy gems online, Pakistan gems, premium stones">
+  <meta name="author" content="AD.Sami Gems Collection">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- ✅ Styles -->
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      background: #f8f8f8;
-      color: #333;
+    :root{
+      --primary:#5d2c02;      /* rich brown */
+      --primary-2:#8a3f06;    /* accent brown */
+      --secondary:#d4af37;    /* royal gold */
+      --dark:#0e0d0c;         /* near black */
+      --dark-2:#171310;       /* deep background */
+      --light:#f9f3e9;        /* parchment */
+      --muted:#b9a074;
+      --card:#ffffff;
+      --glass:rgba(255,255,255,.06);
     }
-    header {
-      background: linear-gradient(135deg, #ff6600, #ff3300);
-      color: white;
-      padding: 20px;
-      text-align: center;
-      font-size: 24px;
-      font-weight: bold;
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{scroll-behavior:smooth}
+    body{
+      font-family: "Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      color: var(--light);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, rgba(212,175,55,.12), transparent 60%),
+        radial-gradient(900px 400px at 90% 10%, rgba(141,88,8,.2), transparent 55%),
+        linear-gradient(180deg, #0b0a09 0%, #16110d 100%);
+      min-height:100vh;
     }
-    .container {
-      padding: 20px;
-      max-width: 900px;
-      margin: auto;
+
+    /* ===== Global Utilities ===== */
+    .container{max-width:1200px;margin-inline:auto;padding:0 5%}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:.9rem 1.2rem;border-radius:999px;border:1px solid transparent;
+      font-weight:600;cursor:pointer;transition:.25s transform,.25s box-shadow,.25s background,.25s color;
+      gap:.5rem;text-decoration:none;
     }
-    .card {
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 15px 0;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    .btn:active{transform:translateY(1px)}
+    .btn-primary{background:var(--secondary);color:#000}
+    .btn-primary:hover{box-shadow:0 8px 24px rgba(212,175,55,.35)}
+    .btn-ghost{background:transparent;border-color:var(--secondary);color:var(--light)}
+    .btn-ghost:hover{background:rgba(212,175,55,.1)}
+    .tag{display:inline-block;padding:.25rem .6rem;border-radius:999px;background:rgba(212,175,55,.14);border:1px solid rgba(212,175,55,.35);color:var(--secondary);font-size:.8rem}
+
+    /* ===== Welcome Screen (First Page) ===== */
+    .welcome-screen{
+      position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;
+      background:
+        radial-gradient(1000px 500px at 20% 0%, rgba(212,175,55,.18), transparent 60%),
+        radial-gradient(900px 600px at 80% 100%, rgba(93,44,2,.35), transparent 55%),
+        linear-gradient(145deg,#0b0a09 0%,#15110d 100%);
+      animation: fadeIn .6s ease both;
     }
-    input, textarea, button {
-      width: 100%;
-      padding: 10px;
-      margin: 8px 0;
-      border: 1px solid #ccc;
-      border-radius: 6px;
-      font-size: 16px;
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .welcome-box{
+      width:min(92%,480px);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(212,175,55,.25);
+      border-radius:22px;padding:34px 28px;text-align:center;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+      backdrop-filter: blur(10px);
+      transform: translateY(10px); opacity:0; animation: rise .9s .1s ease forwards;
     }
-    button {
-      background: #ff6600;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
+    @keyframes rise{to{transform:translateY(0);opacity:1}}
+    .welcome-title{font-size:1.9rem;line-height:1.2;margin-bottom:6px;color:var(--secondary);font-weight:800;letter-spacing:.3px}
+    .welcome-sub{color:#e9dec8cc;margin-bottom:18px}
+    .welcome-hint{font-size:.95rem;color:#e5d7b8b3;margin-bottom:18px}
+    .welcome-actions{display:grid;gap:12px}
+    .welcome-badge{margin-bottom:12px}
+
+    /* Small floating gems for vibe */
+    .gem{
+      position:absolute; width:10px; height:10px; border-radius:2px;
+      background: conic-gradient(from 45deg, #ffd77a, #ffb347, #ffdf99, #ffd77a);
+      filter: drop-shadow(0 0 6px rgba(212,175,55,.6));
+      animation: float 8s ease-in-out infinite;
+      opacity:.9;
     }
-    button:hover {
-      background: #ff3300;
+    .gem.g1{top:14%;left:16%;animation-delay:0s}
+    .gem.g2{top:72%;left:22%;animation-delay:1.2s}
+    .gem.g3{top:18%;right:18%;animation-delay:2.1s}
+    .gem.g4{bottom:12%;right:10%;animation-delay:.6s}
+    @keyframes float{
+      0%,100%{transform:translateY(0) rotate(0deg)}
+      50%{transform:translateY(-14px) rotate(90deg)}
     }
-    h2 {
-      color: #ff3300;
+
+    /* ===== Header / Nav ===== */
+    header{
+      position:sticky;top:0;z-index:20;
+      background: rgba(24,19,14,.65);
+      border-bottom:1px solid rgba(212,175,55,.16);
+      backdrop-filter: blur(8px);
     }
-    .post {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 5%}
+    .logo{font-weight:900;font-size:1.25rem;letter-spacing:.5px;color:var(--secondary)}
+    nav ul{display:flex;list-style:none;gap:22px}
+    nav a{color:#efe5cf;text-decoration:none;font-weight:600}
+    nav a:hover{color:var(--secondary)}
+
+    /* ===== Hero ===== */
+    .hero{
+      position:relative;min-height:72vh;display:grid;place-items:center;text-align:center;
+      overflow:hidden;
     }
-    .login-screen {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background: linear-gradient(135deg, #ff6600, #ff3300);
-      color: white;
-      text-align: center;
+    .hero::before{
+      content:"";position:absolute;inset:0;
+      background:url('https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
+      filter:contrast(1.05) brightness(.65) saturate(1.05);
+      transform: scale(1.04);
     }
-    .login-box {
-      background: white;
-      color: black;
-      padding: 30px;
-      border-radius: 12px;
-      width: 300px;
-      text-align: center;
-      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    .hero-inner{position:relative;z-index:1;padding:0 5%}
+    .hero h1{font-size:clamp(2rem,4.5vw,3.2rem);color:var(--secondary);text-shadow:0 6px 24px rgba(0,0,0,.6)}
+    .hero p{margin-top:10px;color:#f1e6cf;max-width:760px;margin-inline:auto}
+    .hero-actions{margin-top:20px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+    /* ===== Admin Floating Buttons ===== */
+    #adminLoginBtn,#logoutBtn{
+      position:fixed;right:18px;z-index:30;border:none;border-radius:999px;cursor:pointer;padding:.7rem 1rem;
+      display:flex;align-items:center;gap:.5rem;font-weight:700
     }
+    #adminLoginBtn{bottom:18px;background:var(--primary-2);color:#fff;border:1px solid rgba(212,175,55,.35)}
+    #adminLoginBtn:hover{box-shadow:0 12px 28px rgba(138,63,6,.35)}
+    #logoutBtn{bottom:68px;background:#2a2724;color:#fff;border:1px solid rgba(212,175,55,.25);display:none}
+    #logoutBtn:hover{box-shadow:0 12px 28px rgba(0,0,0,.35)}
+
+    /* ===== Modal (Admin Login) ===== */
+    .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:40;align-items:center;justify-content:center;padding:20px}
+    .modal.active{display:flex}
+    .modal-card{
+      width:min(92%,420px);background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(212,175,55,.25);border-radius:18px;padding:22px 20px;box-shadow:0 25px 70px rgba(0,0,0,.55);backdrop-filter:blur(10px)
+    }
+    .modal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+    .close-modal{cursor:pointer;font-size:1.5rem;color:#f0e8d6}
+    .modal-card h2{color:var(--secondary);font-size:1.3rem}
+    .form-group{margin-top:12px}
+    .form-group label{display:block;margin-bottom:6px;color:#eadfc6;font-weight:600}
+    .form-group input{width:100%;padding:.75rem;border-radius:10px;border:1px solid rgba(212,175,55,.25);background:#14100c;color:#f5ead3}
+    .auth-btn{margin-top:12px;width:100%}
+
+    /* ===== Admin Controls (Add Product) ===== */
+    .admin-controls{display:none;padding:40px 5%}
+    .admin-controls.active{display:block}
+    .upload-form{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(212,175,55,.25);
+      border-radius:18px;padding:22px;box-shadow:0 16px 40px rgba(0,0,0,.45);
+    }
+    .upload-title{display:flex;align-items:center;gap:10px;color:var(--secondary);margin-bottom:8px}
+    .upload-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:10px}
+    .upload-grid .form-group textarea,
+    .upload-grid .form-group input,
+    .upload-grid .form-group select{background:#14100c;color:#f5ead3;border:1px solid rgba(212,175,55,.25);border-radius:10px}
+    .upload-btn{margin-top:6px}
+    @media(max-width:720px){.upload-grid{grid-template-columns:1fr}}
+
+    /* ===== Products ===== */
+    .section{padding:64px 0}
+    .section-title{text-align:center;margin-bottom:28px;color:var(--secondary);font-size:1.8rem}
+    .products-grid{
+      display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px
+    }
+    .product-card{
+      background: #171310;
+      border:1px solid rgba(212,175,55,.18);
+      border-radius:16px;overflow:hidden;box-shadow:0 10px 26px rgba(0,0,0,.35);
+      transform: translateY(0); transition:.25s transform,.25s box-shadow;
+    }
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 20px 40px rgba(0,0,0,.45)}
+    .product-img{height:220px;overflow:hidden}
+    .product-img img{width:100%;height:100%;object-fit:cover;transform:scale(1.03);transition:transform .5s ease}
+    .product-card:hover .product-img img{transform:scale(1.1)}
+    .product-info{padding:14px}
+    .product-info h3{color:#f2e6cd;margin-bottom:4px}
+    .product-info p{color:#d9c9aa;opacity:.9;margin-bottom:8px;font-size:.95rem}
+    .product-price{display:inline-block;font-weight:800;color:var(--secondary);margin-bottom:10px}
+    .whatsapp-btn{display:inline-flex;align-items:center;gap:.5rem;background:#25D366;color:#000;text-decoration:none;padding:.55rem .9rem;border-radius:10px;font-weight:700}
+    .whatsapp-btn:hover{filter:brightness(1.05)}
+    .delete-btn{
+      margin-left:8px;background:#8a1f1f;color:#fff;border:none;padding:.55rem .8rem;border-radius:10px;cursor:pointer;font-weight:700;display:none
+    }
+    .admin-logged-in .delete-btn{display:inline-flex}
+
+    /* ===== About ===== */
+    .about{background:linear-gradient(180deg,#16110d 0%,#110e0b 100%)}
+    .about-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:16px}
+    .about-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(212,175,55,.22);border-radius:16px;padding:18px;min-height:140px
+    }
+    .about-card h3{color:var(--secondary);margin-bottom:6px}
+    @media(max-width:900px){.about-grid{grid-template-columns:1fr 1fr}}
+    @media(max-width:620px){.about-grid{grid-template-columns:1fr}}
+
+    /* ===== Contact / Inquiry ===== */
+    .contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+    .contact-card{
+      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border:1px solid rgba(212,175,55,.22);border-radius:16px;padding:18px
+    }
+    .contact-card input,.contact-card textarea{
+      width:100%;padding:.8rem;border-radius:10px;border:1px solid rgba(212,175,55,.25);
+      background:#14100c;color:#f5ead3;margin-top:8px
+    }
+    .contact-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    @media(max-width:880px){.contact-grid{grid-template-columns:1fr}}
+
+    /* ===== Footer ===== */
+    footer{background:#0e0c0a;border-top:1px solid rgba(212,175,55,.18);text-align:center;padding:34px 5%}
+    .social-links a{color:#e9dec8;margin:0 8px;font-size:1.35rem}
+    .social-links a:hover{color:var(--secondary)}
   </style>
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-    import { getFirestore, collection, addDoc, getDocs, query, orderBy } 
-      from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+</head>
+<body>
 
-    // 🔹 Firebase config (replace with your real config)
-    const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT_ID.appspot.com",
-      messagingSenderId: "YOUR_SENDER_ID",
-      appId: "YOUR_APP_ID"
-    };
+  <!-- ===== Floating Gems (visual flair) ===== -->
+  <span class="gem g1"></span><span class="gem g2"></span><span class="gem g3"></span><span class="gem g4"></span>
 
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
+  <!-- ===== Welcome Screen ===== -->
+  <div class="welcome-screen" id="welcomeScreen" aria-hidden="false">
+    <div class="welcome-box">
+      <div class="welcome-badge"><span class="tag">Since 1995 • Premium</span></div>
+      <h1 class="welcome-title">AD.Sami Gems Collection</h1>
+      <p class="welcome-sub">Premium Quality Gemstones & Jewelry</p>
+      <p class="welcome-hint">If you are Admin, please Login. Otherwise, click Skip to continue.</p>
+      <div class="welcome-actions">
+        <button class="btn btn-primary" onclick="openLogin()"><i class="fa-solid fa-lock"></i> Admin Login</button>
+        <button class="btn btn-ghost" onclick="skipWelcome()"><i class="fa-solid fa-forward"></i> Skip & View Products</button>
+      </div>
+    </div>
+  </div>
 
-    // Login System
-    function login() {
-      const user = document.getElementById("username").value;
-      const pass = document.getElementById("password").value;
+  <!-- ===== Admin Floating Buttons ===== -->
+  <button id="adminLoginBtn"><i class="fas fa-lock"></i> Admin</button>
+  <button id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</button>
 
-      if (user === "admin" && pass === "12345") {
-        document.getElementById("loginScreen").style.display = "none";
-        document.getElementById("mainContent").style.display = "block";
-      } else {
-        alert("Invalid credentials!");
+  <!-- ===== Admin Login Modal ===== -->
+  <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-card">
+      <div class="modal-head">
+        <h2 id="loginTitle"><i class="fa-solid fa-shield-halved"></i> Admin Login</h2>
+        <span class="close-modal" id="closeModal" title="Close">&times;</span>
+      </div>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email address</label>
+          <input id="email" type="email" placeholder="owner@email.com" required/>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="••••••••" required/>
+        </div>
+        <button type="submit" class="btn btn-primary auth-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ===== Header / Nav ===== -->
+  <header>
+    <div class="nav container">
+      <div class="logo">Ad Sami Gems PK</div>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Inquiry</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero" id="home" aria-label="Hero banner">
+    <div class="hero-inner">
+      <h1>Premium Natural Gemstones</h1>
+      <p>Discover curated stones from Pakistan and around the world — authenticity, clarity and beauty you can trust.</p>
+      <div class="hero-actions">
+        <a href="#products" class="btn btn-primary"><i class="fa-solid fa-gem"></i> Explore Collection</a>
+        <a href="#contact" class="btn btn-ghost"><i class="fa-solid fa-comment-dots"></i> Send Inquiry</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Admin Controls (Add New Product) ===== -->
+  <section class="admin-controls" id="adminControls" aria-label="Admin Controls">
+    <div class="container">
+      <div class="upload-form">
+        <div class="upload-title">
+          <i class="fa-solid fa-square-plus"></i>
+          <h2>Add New Product</h2>
+        </div>
+        <form id="productForm">
+          <div class="upload-grid">
+            <div class="form-group">
+              <label for="productName">Product Name</label>
+              <input type="text" id="productName" placeholder="e.g., Natural Emerald" required>
+            </div>
+            <div class="form-group">
+              <label for="productPrice">Price (USD)</label>
+              <input type="number" id="productPrice" step="0.01" placeholder="e.g., 1250" required>
+            </div>
+            <div class="form-group" style="grid-column:1/-1">
+              <label for="productDescription">Description</label>
+              <textarea id="productDescription" rows="3" placeholder="Clarity, origin, treatment info..." required></textarea>
+            </div>
+            <div class="form-group">
+              <label for="productImage">Image</label>
+              <input type="file" id="productImage" accept="image/*" required>
+            </div>
+            <div class="form-group">
+              <label for="productOrigin">Origin (optional)</label>
+              <input type="text" id="productOrigin" placeholder="e.g., Zambia / Burma">
+            </div>
+          </div>
+          <button type="submit" class="btn btn-primary upload-btn"><i class="fa-solid fa-cloud-arrow-up"></i> Upload Product</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Products ===== -->
+  <section class="section" id="products" aria-label="Products">
+    <div class="container">
+      <h2 class="section-title">Our Collection</h2>
+      <div class="products-grid" id="productsGrid">
+        <!-- Sample Product 1 -->
+        <div class="product-card" data-id="1">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1200&q=70" alt="Emerald Gemstone">
+          </div>
+          <div class="product-info">
+            <span class="tag">Emerald</span>
+            <h3>Natural Emerald</h3>
+            <p>High quality Zambian emerald with excellent clarity.</p>
+            <span class="product-price">$1,250.00</span>
+            <a class="whatsapp-btn" href="https://wa.me/923401073635?text=I'm%20interested%20in%20Natural%20Emerald" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Inquire Now
+            </a>
+            <button class="delete-btn" onclick="deleteProduct(this)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+        <!-- Sample Product 2 -->
+        <div class="product-card" data-id="2">
+          <div class="product-img">
+            <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=1200&q=70" alt="Ruby Gemstone">
+          </div>
+          <div class="product-info">
+            <span class="tag">Ruby</span>
+            <h3>Burmese Ruby</h3>
+            <p>AAA quality pigeon blood ruby from Myanmar.</p>
+            <span class="product-price">$2,800.00</span>
+            <a class="whatsapp-btn" href="https://wa.me/923401073635?text=I'm%20interested%20in%20Burmese%20Ruby" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> Inquire Now
+            </a>
+            <button class="delete-btn" onclick="deleteProduct(this)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== About ===== -->
+  <section class="section about" id="about" aria-label="About">
+    <div class="container">
+      <h2 class="section-title">About Ad Sami Gems PK</h2>
+      <p style="text-align:center;color:#e9dec8b3;max-width:900px;margin:0 auto 16px">
+        We are a trusted supplier of premium gemstones from Pakistan and around the world. With 15+ years of experience, we focus on authenticity, clarity and fair pricing.
+      </p>
+
+      <div class="about-grid">
+        <div class="about-card">
+          <h3><i class="fa-solid fa-bullseye"></i> Our Mission</h3>
+          <p>Provide genuine, high-quality gemstones with transparent pricing and excellent service.</p>
+        </div>
+        <div class="about-card">
+          <h3><i class="fa-solid fa-certificate"></i> Our Promise</h3>
+          <p>100% natural stones with proper certification and money-back guarantee on authenticity.</p>
+        </div>
+        <div class="about-card">
+          <h3><i class="fa-solid fa-handshake"></i> Customer Trust</h3>
+          <p>Personalized assistance, WhatsApp ordering, and secure worldwide delivery.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Contact / Inquiry ===== -->
+  <section class="section" id="contact" aria-label="Contact">
+    <div class="container">
+      <h2 class="section-title">Send Inquiry</h2>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3 style="color:var(--secondary);margin-bottom:6px"><i class="fa-solid fa-comments"></i> Get In Touch</h3>
+          <p style="color:#e9dec8b3;margin-bottom:12px">Have questions about a stone? Message us directly.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" href="https://wa.me/923401073635" target="_blank" rel="noopener">
+              <i class="fab fa-whatsapp"></i> WhatsApp: +92 340 1073635
+            </a>
+            <a class="btn btn-ghost" href="https://instagram.com/gemsandmineralsonly" target="_blank" rel="noopener">
+              <i class="fab fa-instagram"></i> Instagram
+            </a>
+            <a class="btn btn-ghost" href="mailto:khank8414202@gmail.com">
+              <i class="fa-solid fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3 style="color:var(--secondary);margin-bottom:6px"><i class="fa-solid fa-paper-plane"></i> Quick Inquiry Form</h3>
+          <form id="inquiryForm">
+            <label for="inqName" style="display:block;color:#eadfc6;font-weight:600;margin-top:6px">Your Name</label>
+            <input id="inqName" type="text" placeholder="Your Name" required/>
+
+            <label for="inqEmail" style="display:block;color:#eadfc6;font-weight:600;margin-top:10px">Email</label>
+            <input id="inqEmail" type="email" placeholder="you@example.com" required/>
+
+            <label for="inqMsg" style="display:block;color:#eadfc6;font-weight:600;margin-top:10px">Message</label>
+            <textarea id="inqMsg" rows="4" placeholder="Which gemstone are you interested in?" required></textarea>
+
+            <div class="contact-actions">
+              <button type="submit" class="btn btn-primary"><i class="fa-solid fa-paper-plane-top"></i> Send</button>
+              <button type="button" class="btn btn-ghost" id="sendWhatsApp"><i class="fab fa-whatsapp"></i> Send via WhatsApp</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <div class="logo" style="margin-bottom:6px">Ad Sami Gems PK</div>
+    <p style="color:#e9dec8b3">Premium Quality Gemstones & Jewelry</p>
+    <div class="social-links" style="margin:12px 0">
+      <a href="https://wa.me/923401073635" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+      <a href="https://instagram.com/gemsandmineralsonly" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+      <a href="mailto:khank8414202@gmail.com"><i class="fas fa-envelope"></i></a>
+    </div>
+    <p style="color:#9e8c67;margin-top:8px">&copy; 2025 Ad Sami Gems PK. All Rights Reserved.</p>
+  </footer>
+
+  <!-- ===== Scripts ===== -->
+  <script>
+    // ========= Welcome Screen =========
+    function openLogin(){ document.getElementById('loginModal').classList.add('active'); }
+    function skipWelcome(){ document.getElementById('welcomeScreen').style.display='none'; }
+    // Auto-hide welcome on hash navigation (if user opens via anchor)
+    if(location.hash){ skipWelcome(); }
+
+    // ========= Elements =========
+    const adminLoginBtn = document.getElementById('adminLoginBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const loginModal = document.getElementById('loginModal');
+    const closeModal = document.getElementById('closeModal');
+    const loginForm = document.getElementById('loginForm');
+    const adminControls = document.getElementById('adminControls');
+    const productsGrid = document.getElementById('productsGrid');
+    const productForm = document.getElementById('productForm');
+
+    let isAdminLoggedIn = false;
+    let currentProductId = 3; // Next ID for new products
+
+    // ========= Admin Buttons =========
+    adminLoginBtn.addEventListener('click', ()=> loginModal.classList.add('active'));
+    closeModal.addEventListener('click', ()=> loginModal.classList.remove('active'));
+    window.addEventListener('click', (e)=>{ if(e.target===loginModal) loginModal.classList.remove('active'); });
+
+    function toggleAdminUI(loggedIn){
+      isAdminLoggedIn = loggedIn;
+      if(loggedIn){
+        document.body.classList.add('admin-logged-in');
+        adminControls.classList.add('active');
+        logoutBtn.style.display='block';
+        adminLoginBtn.style.display='none';
+      }else{
+        document.body.classList.remove('admin-logged-in');
+        adminControls.classList.remove('active');
+        logoutBtn.style.display='none';
+        adminLoginBtn.style.display='block';
       }
     }
 
-    function skipLogin() {
-      document.getElementById("loginScreen").style.display = "none";
-      document.getElementById("mainContent").style.display = "block";
-      document.getElementById("adminPanel").style.display = "none"; // hide admin panel for visitors
+    // ========= Dummy Auth (replace with Firebase later) =========
+    loginForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value.trim();
+      if(email==='khank8414202@gmail.com' && password==='sami5657'){
+        toggleAdminUI(true);
+        loginModal.classList.remove('active');
+        skipWelcome();
+        alert('Admin login successful!');
+      } else {
+        alert('Invalid credentials. Please try again.');
+      }
+    });
+    logoutBtn.addEventListener('click', ()=> toggleAdminUI(false));
+
+    // ========= Product Delete =========
+    window.deleteProduct = function(btn){
+      const card = btn.closest('.product-card');
+      if(confirm('Are you sure you want to delete this product?')) card.remove();
+      // TODO: delete from Firestore if connected
     }
 
-    // Add Post
-    async function addPost() {
-      let title = document.getElementById("title").value;
-      let desc = document.getElementById("description").value;
+    // ========= Add New Product (Local Preview) =========
+    productForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('productName').value.trim();
+      const desc = document.getElementById('productDescription').value.trim();
+      const price = parseFloat(document.getElementById('productPrice').value);
+      const origin = document.getElementById('productOrigin').value.trim();
+      const imgFile = document.getElementById('productImage').files[0];
+      if(!imgFile){ return alert('Please select an image'); }
 
-      await addDoc(collection(db, "posts"), {
-        title: title,
-        description: desc,
-        createdAt: new Date()
-      });
-
-      alert("Post added!");
-      loadPosts();
-    }
-
-    // Load Posts
-    async function loadPosts() {
-      const list = document.getElementById("posts");
-      list.innerHTML = "";
-
-      const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
-      const querySnapshot = await getDocs(q);
-
-      querySnapshot.forEach((doc) => {
-        let data = doc.data();
-        list.innerHTML += `
-          <div class="post">
-            <h3>${data.title}</h3>
-            <p>${data.description}</p>
+      const reader = new FileReader();
+      reader.onload = (ev)=>{
+        const id = currentProductId++;
+        const card = document.createElement('div');
+        card.className='product-card';
+        card.dataset.id = id;
+        const originTag = origin ? `<span class="tag">${origin}</span>` : '';
+        card.innerHTML = `
+          <div class="product-img">
+            <img src="${ev.target.result}" alt="${name}">
+          </div>
+          <div class="product-info">
+            ${originTag}
+            <h3>${name}</h3>
+            <p>${desc}</p>
+            <span class="product-price">$${isFinite(price)? price.toFixed(2): '0.00'}</span>
+            <a class="whatsapp-btn" target="_blank" rel="noopener"
+               href="https://wa.me/923401073635?text=I'm%20interested%20in%20${encodeURIComponent(name)}">
+              <i class="fab fa-whatsapp"></i> Inquire Now
+            </a>
+            <button class="delete-btn" onclick="deleteProduct(this)">
+              <i class="fas fa-trash"></i> Delete
+            </button>
           </div>`;
-      });
-    }
+        productsGrid.prepend(card);
+        productForm.reset();
+        window.scrollTo({top: document.getElementById('products').offsetTop - 60, behavior:'smooth'});
+        alert('Product added successfully!');
+      };
+      reader.readAsDataURL(imgFile);
+    });
 
-    window.login = login;
-    window.skipLogin = skipLogin;
-    window.addPost = addPost;
-    window.onload = loadPosts;
+    // ========= Inquiry Form Handling =========
+    const inquiryForm = document.getElementById('inquiryForm');
+    const sendWhatsAppBtn = document.getElementById('sendWhatsApp');
+
+    inquiryForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      const name = document.getElementById('inqName').value.trim();
+      const email = document.getElementById('inqEmail').value.trim();
+      const msg = document.getElementById('inqMsg').value.trim();
+      const subject = encodeURIComponent(`Gemstone Inquiry from ${name}`);
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${msg}`);
+      window.location.href = `mailto:khank8414202@gmail.com?subject=${subject}&body=${body}`;
+    });
+
+    sendWhatsAppBtn.addEventListener('click', ()=>{
+      const name = document.getElementById('inqName').value.trim();
+      const email = document.getElementById('inqEmail').value.trim();
+      const msg = document.getElementById('inqMsg').value.trim();
+      const text = encodeURIComponent(`Hello AD.Sami Gems,\n\nName: ${name}\nEmail: ${email}\nMessage: ${msg}`);
+      window.open(`https://wa.me/923401073635?text=${text}`,'_blank','noopener');
+    });
   </script>
-</head>
-<body>
-  <!-- Login Screen -->
-  <div id="loginScreen" class="login-screen">
-    <div class="login-box">
-      <h2>Welcome to Ad Sami Gems PK</h2>
-      <p>If you are Admin, please login. Otherwise, click Skip.</p>
-      <input type="text" id="username" placeholder="Username">
-      <input type="password" id="password" placeholder="Password">
-      <button onclick="login()">Login</button>
-      <button onclick="skipLogin()">Skip</button>
-    </div>
-  </div>
-
-  <!-- Main Content -->
-  <div id="mainContent" style="display:none;">
-    <header>✨ Ad Sami Gems PK ✨</header>
-    <div class="container">
-
-      <!-- Admin Panel -->
-      <div id="adminPanel" class="card">
-        <h2>Add New Post</h2>
-        <input type="text" id="title" placeholder="Enter post title">
-        <textarea id="description" placeholder="Enter description"></textarea>
-        <button onclick="addPost()">Add Post</button>
-      </div>
-
-      <!-- Posts -->
-      <div class="card">
-        <h2>Latest Posts</h2>
-        <div id="posts"></div>
-      </div>
-
-      <!-- About -->
-      <div class="card">
-        <h2>About Ad Sami Gems PK</h2>
-        <p>
-          Welcome to Ad Sami Gems PK. We specialize in precious and semi-precious gemstones, 
-          sourced with care and authenticity. With years of experience, our mission is to bring 
-          natural beauty and positive energy to our valued customers.
-        </p>
-      </div>
-
-      <!-- Inquiry Form -->
-      <div class="card">
-        <h2>Send Inquiry</h2>
-        <input type="text" placeholder="Your Name">
-        <input type="email" placeholder="Your Email">
-        <textarea placeholder="Your Message"></textarea>
-        <button onclick="alert('Inquiry sent!')">Submit</button>
-      </div>
-
-    </div>
-  </div>
 </body>
 </html>
